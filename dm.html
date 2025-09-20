@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Panel - The Equinox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" ></script>
+</head>
+<body>
+    <header>
+        <h1>DM Control Panel</h1>
+        <p>Restock the Shadows</p>
+    </header>
+    <div id="dm-items-container" class="grid"></div>
+    <script>
+    // simple password protection 
+    const password = prompt("Enter DM password:");
+    if (password !== "cyberdm") {
+        alert("Access Denied");
+        window.location.href = "index.html";
+    } else {
+        // Wait for initItems to complete before calling loadDMItems
+        initItems().then(() => {
+            loadDMItems();
+        }).catch(error => {
+            console.error('Error initializing items:', error);
+            alert('Failed to initialize DM panel. Please try again later.');
+        });
+    }
+</script>
+</body>
+</html>
